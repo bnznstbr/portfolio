@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#7A1F2B" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0E17" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Freelance compliance, admin, and IT support in Cavite. eBIR tax filing, business permits, records management, and on-ground liaison — done accurately and on time.">
+<title>bnznstbr — Compliance, Admin & IT Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch(e){}
+  })();
+</script>
+
+<style>
+  /* ==================================================
+     DESIGN TOKENS (fluid)
+     ================================================== */
+  :root{
+    --sp-1: clamp(4px, 0.5vw, 6px);
+    --sp-2: clamp(8px, 1vw, 12px);
+    --sp-3: clamp(12px, 1.5vw, 18px);
+    --sp-4: clamp(16px, 2vw, 24px);
+    --sp-5: clamp(24px, 3vw, 36px);
+    --sp-6: clamp(32px, 4vw, 48px);
+    --sp-7: clamp(48px, 6vw, 72px);
+    --sp-8: clamp(64px, 8vw, 96px);
+
+    --pad-x: clamp(16px, 4vw, 32px);
+    --max: 1180px;
+    --nav-h: 68px;
+
+    --radius-sm: 10px;
+    --radius: 14px;
+    --radius-lg: 20px;
+
+    /* Light Theme Colors */
+    --bg:#FFFFFF;
+    --bg-2:#F7F8FA;
+    --bg-3:#EEF1F5;
+    --card:#FFFFFF;
+    --ink:#0B1220;
+    --ink-2:#334155;
+    --muted:#64748B;
+    --line:#E5E9EF;
+    --line-2:#EDF1F6;
+    --brand:#7A1F2B;
+    --brand-dk:#5E1620;
+    --brand-soft:#FBF1F2;
+    --brand-line:#F0DADD;
+
+    --shadow-sm:0 1px 2px rgba(11,18,32,.04), 0 1px 3px rgba(11,18,32,.04);
+    --shadow-md:0 4px 12px -4px rgba(11,18,32,.08), 0 2px 6px -2px rgba(11,18,32,.05);
+    --shadow-lg:0 24px 48px -20px rgba(11,18,32,.20), 0 8px 20px -8px rgba(11,18,32,.10);
+
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+  }
+
+  @media (min-width: 768px){
+    :root{ --nav-h: 76px; }
+  }
+
+  [data-theme="dark"]{
+    --bg:#0A0E17;
+    --bg-2:#0F1420;
+    --bg-3:#151B29;
+    --card:#111826;
+    --ink:#F1F5F9;
+    --ink-2:#CBD5E1;
+    --muted:#8B98AD;
+    --line:#1F2937;
+    --line-2:#1A2231;
+    --brand:#D4737F;
+    --brand-dk:#E8969F;
+    --brand-soft:rgba(212,115,127,.10);
+    --brand-line:rgba(212,115,127,.24);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow-md:0 4px 12px -4px rgba(0,0,0,.5);
+    --shadow-lg:0 24px 48px -20px rgba(0,0,0,.7), 0 8px 20px -8px rgba(0,0,0,.5);
+  }
+
+  /* ==================================================
+     RESET & BASE
+     ================================================== */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top: calc(var(--nav-h) + 24px);
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+  }
+
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:clamp(15px, 1.05vw + 12px, 16px);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+    min-height:100vh;
+    min-height:100dvh;
+    transition:background-color .35s ease, color .35s ease;
+  }
+
+  body.nav-open{overflow:hidden}
+
+  h1,h2,h3,h4{
+    font-weight:700;
+    line-height:1.15;
+    letter-spacing:-.028em;
+    color:var(--ink);
+    text-wrap:balance;
+  }
+
+  p{text-wrap:pretty}
+
+  a{color:inherit;text-decoration:none}
+  img,svg{max-width:100%;display:block}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;font-size:inherit}
+
+  ::selection{background:var(--brand);color:#fff}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding-left: max(var(--pad-x), var(--safe-left));
+    padding-right: max(var(--pad-x), var(--safe-right));
+    width:100%;
+  }
+
+  /* ==================================================
+     SCROLL PROGRESS
+     ================================================== */
+  #progress{
+    position:fixed;top:0;left:0;
+    height:3px;width:0%;
+    background:linear-gradient(90deg,var(--brand),var(--brand-dk));
+    z-index:200;
+    transition:width .08s linear;
+    box-shadow:0 0 12px rgba(122,31,43,.4);
+    will-change:width;
+  }
+
+  /* ==================================================
+     NAVBAR
+     ================================================== */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:150;
+    background:transparent;
+    padding-top: var(--safe-top);
+    transition:background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(16px) saturate(160%);
+    -webkit-backdrop-filter:blur(16px) saturate(160%);
+    border-bottom-color:var(--line);
+  }
+
+  .nav{
+    max-width:var(--max);
+    margin:0 auto;
+    padding-left: max(var(--pad-x), var(--safe-left));
+    padding-right: max(var(--pad-x), var(--safe-right));
+    height:var(--nav-h);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:var(--sp-3);
+  }
+
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-weight:800;
+    font-size:clamp(.95rem, 1vw + .5rem, 1.02rem);
+    letter-spacing:-.02em;
+    color:var(--ink);
+    flex-shrink:0;
+    transition:opacity .2s;
+    min-height:44px;
+  }
+  .brand:hover{opacity:.75}
+  .brand-mark{
+    width:34px;height:34px;flex:none;
+    border-radius:9px;
+    background:linear-gradient(140deg,var(--brand),var(--brand-dk));
+    color:#fff;display:grid;place-items:center;
+    font-size:.78rem;font-weight:800;
+    box-shadow:0 6px 16px -6px rgba(122,31,43,.55);
+  }
+  @media (max-width: 380px){
+    .brand-text{display:none}
+  }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:2px;
+    list-style:none;
+  }
+  .nav-links a{
+    display:inline-flex;
+    align-items:center;
+    font-size:.875rem;
+    font-weight:500;
+    color:var(--ink-2);
+    padding:9px 14px;
+    border-radius:9px;
+    transition:color .2s, background .2s;
+    min-height:40px;
+  }
+  .nav-links a:hover{color:var(--ink);background:var(--bg-3)}
+  .nav-links a.active{color:var(--brand)}
+
+  .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+
+  .theme-btn{
+    width:40px;height:40px;
+    border-radius:10px;
+    display:grid;place-items:center;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink-2);
+    transition:background .2s, border-color .2s, color .2s, transform .2s;
+    position:relative;
+    overflow:hidden;
+    flex-shrink:0;
+  }
+  .theme-btn:hover{color:var(--brand);border-color:var(--brand-line);transform:translateY(-1px)}
+  .theme-btn svg{
+    position:absolute;
+    width:17px;height:17px;
+    transition:transform .5s cubic-bezier(.5,-0.4,.4,1.4), opacity .35s;
+  }
+  .theme-btn .sun{transform:rotate(0) scale(1);opacity:1}
+  .theme-btn .moon{transform:rotate(-90deg) scale(.5);opacity:0}
+  [data-theme="dark"] .theme-btn .sun{transform:rotate(90deg) scale(.5);opacity:0}
+  [data-theme="dark"] .theme-btn .moon{transform:rotate(0) scale(1);opacity:1}
+
+  .nav-cta{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:10px 20px;
+    background:var(--ink);
+    color:var(--bg);
+    font-size:.875rem;
+    font-weight:600;
+    border-radius:10px;
+    transition:background .2s, transform .2s, box-shadow .2s;
+    white-space:nowrap;
+    min-height:40px;
+  }
+  .nav-cta:hover{
+    background:var(--brand);color:#fff;
+    transform:translateY(-1px);
+    box-shadow:0 10px 22px -10px rgba(122,31,43,.6);
+  }
+
+  .burger{
+    display:none;
+    width:42px;height:42px;
+    border-radius:10px;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    border:1px solid var(--line);
+    background:var(--card);
+    transition:border-color .2s;
+    flex-shrink:0;
+  }
+  .burger:hover{border-color:var(--muted)}
+  .burger span{
+    display:block;
+    width:17px;height:1.6px;
+    background:var(--ink);
+    border-radius:2px;
+    transition:.28s;
+  }
+  .burger.open span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+
+  @media (max-width: 880px){
+    .burger{display:flex}
+    .nav-links{
+      position:fixed;
+      top: calc(var(--nav-h) + var(--safe-top));
+      left:0;right:0;
+      flex-direction:column;
+      align-items:stretch;
+      gap:2px;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+      padding:16px max(var(--pad-x), var(--safe-left)) 24px;
+      transform:translateY(-12px);
+      opacity:0;
+      visibility:hidden;
+      transition:.28s ease;
+      max-height: calc(100vh - var(--nav-h));
+      overflow-y:auto;
+      box-shadow:0 24px 40px -20px rgba(0,0,0,.2);
+    }
+    .nav-links.open{transform:none;opacity:1;visibility:visible}
+    .nav-links a{padding:14px;font-size:1rem;min-height:48px;border-radius:10px}
+  }
+
+  @media (max-width: 480px){
+    .nav-cta{display:none}
+  }
+
+  /* ==================================================
+     HERO
+     ================================================== */
+  .hero{
+    position:relative;
+    padding-top: calc(var(--nav-h) + var(--safe-top) + clamp(48px, 8vw, 90px));
+    padding-bottom: clamp(60px, 10vw, 100px);
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  .hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
+
+  .orb{
+    position:absolute;border-radius:50%;
+    filter:blur(80px);
+    animation:float 18s ease-in-out infinite;
+    will-change:transform;
+  }
+  .orb-1{
+    width:clamp(280px, 45vw, 520px);
+    height:clamp(280px, 45vw, 520px);
+    background:radial-gradient(circle,var(--brand) 0%,transparent 70%);
+    top:-15%;right:-15%;
+    opacity:.18;
+  }
+  .orb-2{
+    width:clamp(220px, 38vw, 420px);
+    height:clamp(220px, 38vw, 420px);
+    background:radial-gradient(circle,#3B82F6 0%,transparent 70%);
+    bottom:-12%;left:-10%;
+    opacity:.14;
+    animation-delay:-8s;
+  }
+  [data-theme="dark"] .orb-1{opacity:.22}
+  [data-theme="dark"] .orb-2{opacity:.16}
+
+  @keyframes float{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(30px,-30px) scale(1.08)}
+  }
+
+  .grid-lines{
+    position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 75%);
+    opacity:.55;
+  }
+
+  .hero-inner{max-width:880px;position:relative}
+
+  .badge{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:.78rem;font-weight:600;
+    color:var(--brand);
+    background:var(--brand-soft);
+    border:1px solid var(--brand-line);
+    padding:7px 15px;
+    border-radius:100px;
+    margin-bottom:clamp(20px, 3vw, 32px);
+    animation:fadeUp .8s .05s both cubic-bezier(.2,.8,.2,1);
+  }
+  .badge-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--brand);flex:none;
+    animation:ping 2.4s ease-in-out infinite;
+  }
+  @keyframes ping{
+    0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--brand) 55%, transparent)}
+    50%{box-shadow:0 0 0 7px transparent}
+  }
+
+  .hero h1{
+    font-size:clamp(1.85rem, 6vw + .5rem, 4.2rem);
+    font-weight:800;
+    letter-spacing:-.035em;
+    line-height:1.06;
+    margin-bottom:clamp(18px, 2.5vw, 28px);
+    animation:fadeUp .9s .1s both cubic-bezier(.2,.8,.2,1);
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(120deg,var(--brand) 0%,var(--brand-dk) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:var(--brand);
+  }
+
+  .hero .lead{
+    font-size:clamp(1rem, 1vw + .7rem, 1.2rem);
+    color:var(--ink-2);
+    max-width:60ch;
+    margin-bottom:clamp(28px, 4vw, 40px);
+    line-height:1.68;
+    animation:fadeUp .9s .2s both cubic-bezier(.2,.8,.2,1);
+  }
+
+  .actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    animation:fadeUp .9s .3s both cubic-bezier(.2,.8,.2,1);
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    gap:9px;
+    padding:14px 26px;
+    border-radius:11px;
+    font-size:clamp(.9rem, .6vw + .7rem, .95rem);
+    font-weight:600;
+    transition:transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
+    border:1px solid transparent;
+    white-space:nowrap;
+    min-height:48px;
+    cursor:pointer;
+  }
+  .btn-solid{
+    background:var(--ink);color:var(--bg);
+    box-shadow:0 10px 24px -12px rgba(11,18,32,.5);
+  }
+  .btn-solid:hover{
+    background:var(--brand);color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 18px 34px -14px rgba(122,31,43,.55);
+  }
+  .btn-line{
+    background:var(--card);color:var(--ink);
+    border-color:var(--line);
+  }
+  .btn-line:hover{
+    border-color:var(--brand);
+    color:var(--brand);
+    transform:translateY(-2px);
+  }
+  .btn svg{width:15px;height:15px;flex:none;transition:transform .2s}
+  .btn-solid:hover svg{transform:translateX(3px)}
+
+  .metrics{
+    margin-top:clamp(44px, 7vw, 80px);
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    animation:fadeUp .9s .4s both cubic-bezier(.2,.8,.2,1);
+  }
+  @media (max-width: 640px){
+    .metrics{grid-template-columns:repeat(2, 1fr)}
+  }
+  .metric{
+    background:var(--card);
+    padding:clamp(20px, 2.5vw, 28px) clamp(16px, 2vw, 24px);
+    transition:background .25s;
+    min-width:0;
+  }
+  .metric:hover{background:var(--bg-2)}
+  .metric-num{
+    font-size:clamp(1.4rem, 2.6vw + .3rem, 2.1rem);
+    font-weight:800;
+    letter-spacing:-.04em;
+    line-height:1;
+    color:var(--ink);
+    margin-bottom:10px;
+    font-variant-numeric:tabular-nums;
+  }
+  .metric-num .suffix{color:var(--brand);margin-left:1px}
+  .metric-label{
+    font-size:clamp(.72rem, .5vw + .55rem, .8rem);
+    color:var(--muted);
+    font-weight:500;
+    line-height:1.45;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:none}
+  }
+
+  /* ==================================================
+     SECTIONS & GENERAL
+     ================================================== */
+  section{
+    padding-top:clamp(64px, 9vw, 110px);
+    padding-bottom:clamp(64px, 9vw, 110px);
+    position:relative;
+  }
+  .section-soft{
+    background:var(--bg-2);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .section-head{
+    max-width:720px;
+    margin-bottom:clamp(40px, 6vw, 64px);
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brand);
+    margin-bottom:clamp(14px, 2vw, 18px);
+  }
+  .eyebrow::before{
+    content:"";
+    width:24px;height:1.5px;
+    background:var(--brand);
+    border-radius:2px;
+    flex:none;
+  }
+  .sec-h{
+    font-size:clamp(1.6rem, 3.2vw + .5rem, 2.6rem);
+    font-weight:800;
+    letter-spacing:-.032em;
+    margin-bottom:clamp(14px, 2vw, 20px);
+    line-height:1.12;
+  }
+  .sec-p{
+    color:var(--ink-2);
+    font-size:clamp(.98rem, .5vw + .85rem, 1.05rem);
+    line-height:1.7;
+  }
+
+  /* ==================================================
+     SERVICES
+     ================================================== */
+  .svc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .svc{
+    background:var(--card);
+    padding:clamp(28px, 3vw, 40px) clamp(20px, 2.5vw, 32px);
+    transition:background .3s;
+    position:relative;
+    overflow:hidden;
+  }
+  .svc::after{
+    content:"";
+    position:absolute;left:0;bottom:0;
+    height:2px;width:100%;
+    background:linear-gradient(90deg,var(--brand),var(--brand-dk));
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .svc:hover{background:var(--bg-2)}
+  .svc:hover::after{transform:scaleX(1)}
+  .svc-num{
+    font-size:.75rem;font-weight:700;
+    color:var(--brand);
+    letter-spacing:.12em;
+    display:block;
+    margin-bottom:clamp(16px, 2vw, 22px);
+  }
+  .svc h3{
+    font-size:clamp(1.05rem, .5vw + .9rem, 1.15rem);
+    font-weight:700;
+    letter-spacing:-.02em;
+    margin-bottom:12px;
+  }
+  .svc p{font-size:.925rem;color:var(--ink-2);line-height:1.68}
+
+  /* ==================================================
+     ABOUT
+     ================================================== */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(32px, 5vw, 80px);
+    align-items:start;
+  }
+  @media (min-width: 900px){
+    .about-grid{grid-template-columns: 1fr 1.35fr}
+  }
+  .portrait-wrap{display:flex;justify-content:center}
+  @media (min-width: 900px){
+    .portrait-wrap{justify-content:flex-start}
+  }
+  .portrait{
+    width:100%;
+    max-width:280px;
+    aspect-ratio:1/1;
+    border-radius:var(--radius-lg);
+    background:linear-gradient(145deg,var(--brand-soft),var(--bg-3));
+    border:1px solid var(--line);
+    display:grid;place-items:center;
+    position:relative;
+    overflow:hidden;
+  }
+  @media (min-width: 900px){
+    .portrait{max-width:100%}
+  }
+  .portrait::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:32px 32px;
+    opacity:.5;
+  }
+  .portrait-text{
+    position:relative;
+    font-size:clamp(2.4rem, 6vw, 3rem);
+    font-weight:800;
+    letter-spacing:-.03em;
+    color:var(--brand);
+  }
+  .about-body p{
+    color:var(--ink-2);
+    font-size:clamp(.98rem, .5vw + .85rem, 1.05rem);
+    line-height:1.75;
+    margin-bottom:20px;
+  }
+  .about-body p:last-child{margin-bottom:0}
+  .about-body strong{color:var(--ink);font-weight:700}
+
+  /* ==================================================
+     PROCESS
+     ================================================== */
+  .steps{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(16px, 2.5vw, 32px);
+  }
+  @media (min-width: 720px){
+    .steps{grid-template-columns:repeat(3, 1fr)}
+  }
+  .step{
+    padding:clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 32px);
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    transition:transform .3s, box-shadow .3s, border-color .3s;
+  }
+  .step:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--brand-line);
+  }
+  .step-num{
+    width:44px;height:44px;
+    border-radius:11px;
+    background:var(--brand-soft);
+    border:1px solid var(--brand-line);
+    color:var(--brand);
+    display:grid;place-items:center;
+    font-weight:800;font-size:.9rem;
+    margin-bottom:clamp(16px, 2vw, 22px);
+  }
+  .step h3{
+    font-size:clamp(1.02rem, .5vw + .9rem, 1.1rem);
+    font-weight:700;
+    letter-spacing:-.02em;
+    margin-bottom:12px;
+  }
+  .step p{font-size:.925rem;color:var(--ink-2);line-height:1.68}
+
+  /* ==================================================
+     SKILLS
+     ================================================== */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(28px, 4vw, 44px);
+  }
+  @media (min-width: 520px){
+    .skills-grid{grid-template-columns:repeat(2, 1fr)}
+  }
+  @media (min-width: 960px){
+    .skills-grid{grid-template-columns:repeat(4, 1fr);gap:44px 40px}
+  }
+  .skill-col h3{
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:20px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{
+    font-size:.82rem;
+    font-weight:500;
+    color:var(--ink-2);
+    border:1px solid var(--line);
+    background:var(--card);
+    padding:7px 14px;
+    border-radius:100px;
+    transition:border-color .2s, color .2s, background .2s, transform .2s;
+  }
+  .pill:hover{
+    border-color:var(--brand);
+    color:var(--brand);
+    background:var(--brand-soft);
+    transform:translateY(-2px);
+  }
+
+  /* ==================================================
+     CONTACT
+     ================================================== */
+  .contact{
+    background:linear-gradient(135deg,#7A1F2B 0%,#5E1620 100%);
+    color:#fff;
+    padding-top:clamp(70px, 10vw, 130px);
+    padding-bottom:clamp(60px, 8vw, 110px);
+    position:relative;
+    overflow:hidden;
+  }
+  [data-theme="dark"] .contact{
+    background:linear-gradient(135deg,#5E1620 0%,#3D0E15 100%);
+  }
+  .contact::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 60% 70% at 50% 50%, #000, transparent 75%);
+  }
+  .contact .wrap{position:relative;z-index:1}
+  .contact h2{
+    color:#fff;
+    font-size:clamp(1.7rem, 3.5vw + .5rem, 3.1rem);
+    font-weight:800;
+    letter-spacing:-.035em;
+    margin-bottom:20px;
+    max-width:16ch;
+    line-height:1.1;
+  }
+  .contact .eyebrow{color:rgba(255,255,255,.75)}
+  .contact .eyebrow::before{background:rgba(255,255,255,.75)}
+  .contact .lead{
+    color:rgba(255,255,255,.85);
+    font-size:clamp(1rem, .5vw + .85rem, 1.08rem);
+    max-width:54ch;
+    margin-bottom:clamp(32px, 4vw, 44px);
+    line-height:1.68;
+  }
+  .contact-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:clamp(48px, 6vw, 72px);
+  }
+  .contact .btn-solid{
+    background:#fff;
+    color:var(--brand-dk);
+    box-shadow:0 14px 30px -14px rgba(0,0,0,.5);
+  }
+  .contact .btn-solid:hover{background:var(--bg-2);color:var(--brand-dk)}
+  .contact .btn-line{
+    background:transparent;
+    color:#fff;
+    border-color:rgba(255,255,255,.35);
+  }
+  .contact .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+  .contact-details{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(24px, 3vw, 40px);
+    padding-top:clamp(32px, 4vw, 56px);
+    border-top:1px solid rgba(255,255,255,.16);
+  }
+  @media (min-width: 560px){
+    .contact-details{grid-template-columns:repeat(auto-fit, minmax(180px, 1fr))}
+  }
+  .contact-details dt{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.55);
+    margin-bottom:9px;
+  }
+  .contact-details dd{
+    font-size:1rem;
+    color:#fff;
+    font-weight:500;
+    word-break:break-word;
+  }
+  .contact-details dd a{transition:opacity .2s}
+  .contact-details dd a:hover{opacity:.75}
+
+  /* ==================================================
+     FOOTER
+     ================================================== */
+  footer{
+    background:var(--bg);
+    border-top:1px solid var(--line);
+    padding:36px 0;
+    padding-bottom: calc(36px + var(--safe-bottom));
+    font-size:.83rem;
+    color:var(--muted);
+  }
+  footer .wrap{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    justify-content:space-between;
+    align-items:center;
+  }
+  @media (max-width: 560px){
+    footer .wrap{flex-direction:column;align-items:flex-start}
+  }
+  footer .right{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  footer a{transition:color .2s}
+  footer a:hover{color:var(--brand)}
+
+  /* ==================================================
+     REVEAL & BACK TO TOP
+     ================================================== */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1);
+    will-change:opacity, transform;
+  }
+  .reveal.in{opacity:1;transform:none}
+
+  #top{
+    position:fixed;
+    right: max(16px, var(--safe-right));
+    bottom: max(16px, var(--safe-bottom));
+    z-index:90;
+    width:46px;height:46px;
+    border-radius:12px;
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--ink);
+    display:grid;place-items:center;
+    box-shadow:var(--shadow-md);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+    transition:all .3s ease;
+  }
+  #top.in{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  #top:hover{
+    border-color:var(--brand);
+    color:var(--brand);
+    transform:translateY(-2px);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="progress"></div>
+
+  <!-- Header / Navigation -->
+  <header id="header">
+    <div class="nav">
+      <a href="#" class="brand">
+        <span class="brand-mark">B</span>
+        <span class="brand-text">bnznstbr</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41m12.02-12.02l-1.41 1.41"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <a href="#contact" class="nav-cta">Get in Touch</a>
+        <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="wrap hero-inner">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Based in Cavite, Philippines &bull; Available for Freelance
+      </div>
+      <h1>Reliable <em>Compliance, Admin &amp; IT Support</em> for Growing Businesses.</h1>
+      <p class="lead">Specializing in eBIR tax filing, business permits and renewals, meticulous records management, and on-ground liaison work — executed with precision and punctuality.</p>
+      <div class="actions">
+        <a href="#contact" class="btn btn-solid">
+          Start a Project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn btn-line">Explore Services</a>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-num">100<span class="suffix">%</span></div>
+          <div class="metric-label">On-Time Tax &amp; Permit Filing</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">5<span class="suffix">+</span></div>
+          <div class="metric-label">Years Compliance Experience</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">50<span class="suffix">+</span></div>
+          <div class="metric-label">Local Agencies Navigated</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">24<span class="suffix">/7</span></div>
+          <div class="metric-label">IT &amp; Systems Reliability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section-soft">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Core Capabilities</span>
+        <h2 class="sec-h">Comprehensive support across compliance, admin, and IT.</h2>
+        <p class="sec-p">Eliminating administrative friction so you can focus entirely on scaling your core operations.</p>
+      </div>
+
+      <div class="svc-grid reveal">
+        <div class="svc">
+          <span class="svc-num">01</span>
+          <h3>Tax Compliance &amp; eBIR</h3>
+          <p>Accurate eBIRForms preparation, electronic filing, and payment processing aligned with BIR regulations to prevent penalties.</p>
+        </div>
+        <div class="svc">
+          <span class="svc-num">02</span>
+          <h3>Business Permits &amp; LGU Liaison</h3>
+          <p>Seamless processing for new business registrations, annual barangay and municipal permit renewals, and government liaison.</p>
+        </div>
+        <div class="svc">
+          <span class="svc-num">03</span>
+          <h3>Admin &amp; Records Management</h3>
+          <p>Digitizing physical archives, maintaining pristine corporate books, handling correspondence, and organizing vital documentation.</p>
+        </div>
+        <div class="svc">
+          <span class="svc-num">04</span>
+          <h3>IT Support &amp; Systems Setup</h3>
+          <p>Hardware troubleshooting, network setup, cloud workspace management, and reliable tech support for small offices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="portrait-wrap reveal">
+          <div class="portrait">
+            <span class="portrait-text">B</span>
+          </div>
+        </div>
+        <div class="about-body reveal">
+          <span class="eyebrow">About Me</span>
+          <h2 class="sec-h">Detail-oriented professional dedicated to operational excellence.</h2>
+          <p>Based in the heart of Cavite, I bridge the gap between bureaucratic compliance and technical efficiency. Navigating Philippine government agencies like the BIR, SSS, PhilHealth, Pag-IBIG, and local Local Government Units (LGUs) requires persistence, precision, and up-to-date knowledge.</p>
+          <p>Whether you are a startup founder looking to streamline your back-office systems or an established business needing dependable regulatory support, I deliver <strong>accurate, transparent, and timely results</strong> every single cycle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="section-soft">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Workflow</span>
+        <h2 class="sec-h">A structured approach to hassle-free operations.</h2>
+        <p class="sec-p">Clear communication and methodical execution from initial audit to final completion.</p>
+      </div>
+
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Audit &amp; Assessment</h3>
+          <p>Reviewing your current compliance standing, documentation status, and IT infrastructure to identify gaps and requirements.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Execution &amp; Filing</h3>
+          <p>Handling document preparation, eBIR submissions, LGU queues, and technical configurations with rigorous attention to detail.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Verification &amp; Handover</h3>
+          <p>Providing stamped confirmations, updated digital archives, and complete compliance reports for your permanent records.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Expertise &amp; Tools</span>
+        <h2 class="sec-h">Technical proficiency across platforms and compliance frameworks.</h2>
+        <p class="sec-p">Equipped with the right software, government workflows, and administrative best practices.</p>
+      </div>
+
+      <div class="skills-grid reveal">
+        <div class="skill-col">
+          <h3>Tax &amp; Government</h3>
+          <div class="pills">
+            <span class="pill">eBIRForms</span>
+            <span class="pill">EFPS</span>
+            <span class="pill">SEC Filings</span>
+            <span class="pill">LGU Permits</span>
+            <span class="pill">SSS / PhilHealth</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <h3>Admin &amp; Records</h3>
+          <div class="pills">
+            <span class="pill">Google Workspace</span>
+            <span class="pill">Microsoft 365</span>
+            <span class="pill">Data Entry</span>
+            <span class="pill">Bookkeeping</span>
+            <span class="pill">Archive Digitization</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <h3>IT &amp; Hardware</h3>
+          <div class="pills">
+            <span class="pill">Network Setup</span>
+            <span class="pill">OS Troubleshooting</span>
+            <span class="pill">Hardware Maintenance</span>
+            <span class="pill">Cloud Storage</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <h3>Soft Skills</h3>
+          <div class="pills">
+            <span class="pill">Liaison Work</span>
+            <span class="pill">Time Management</span>
+            <span class="pill">Attention to Detail</span>
+            <span class="pill">Client Communication</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Let’s streamline your compliance and operations.</h2>
+      <p class="lead">Ready to take the stress out of tax filing, permit renewals, and admin tasks? Reach out today to discuss how we can work together.</p>
+
+      <div class="contact-actions">
+        <a href="mailto:contact@bnznstbr.local" class="btn btn-solid">
+          Send an Email
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:+639000000000" class="btn btn-line">Call / SMS</a>
+      </div>
+
+      <dl class="contact-details">
+        <div>
+          <dt>Location</dt>
+          <dd>Dasmariñas, Cavite, Philippines</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd><a href="mailto:contact@bnznstbr.local">contact@bnznstbr.local</a></dd>
+        </div>
+        <div>
+          <dt>Response Time</dt>
+          <dd>Within 24 Hours</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div>&copy; <span id="year">2026</span> bnznstbr. All rights reserved.</div>
+      <div class="right">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" id="top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </a>
+
+  <script>
+    // Theme switcher
+    const themeBtn = document.getElementById('themeToggle');
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Mobile nav toggle
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.classList.remove('nav-open');
+      });
+    });
+
+    // Scroll progress & header shadow
+    const header = document.getElementById('header');
+    const progress = document.getElementById('progress');
+    const topBtn = document.getElementById('top');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progress.style.width = scrollPercent + '%';
+
+      if(scrollTop > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      if(scrollTop > 400) {
+        topBtn.classList.add('in');
+      } else {
+        topBtn.classList.remove('in');
+      }
+    });
+
+    // Intersection Observer for scroll reveals
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('in');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Dynamic Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
